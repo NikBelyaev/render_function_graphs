@@ -10,4 +10,4 @@ You have to enter f(x) function to get the function graph. An input is in infini
 - You have to use double stars to raise a number to the power of n, <code>x**2</code> instead of <code>x^2</code>;
 - You have to use vertical slashes to get absolute statement. It can be like <code>|2*x|</code>;
 - You always have to use stars to multiply values, <code>2*x</code> instead of <code>2x</code>;
-- Use trigonometrical functions like this <code>sin, cos, tan and etc</code>.
+- Use trigonometrical functions with prefix <code>np.</code> like this <code>np.sin, np.cos, np.tan and etc</code>. (I will fix it)
