@@ -7,6 +7,11 @@ def format_input_func(formula):
     re_result_list = re.findall('(\|.*?\|)', formula)
     for re_result in re_result_list:
         formula = formula.replace(re_result, 'abs('+re_result.strip('|')+')')
+    # Search for trigonomtrical functions and replace it with np.*
+    trigon_funcs = ['[^c]sin', '[^c]cos', '[^c]tan', 'arcsin', 'arccos', 'arctan']
+    for trigon_func in trigon_funcs:
+        if trigon_func in formula:
+            formula = formula.replace(trigon_func, 'np.'+trigon_func)
     return formula
 
 def render_func_graph(formula, x_range):
