@@ -1,20 +1,23 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-fig = plt.figure()
-xlist, ylist = [], []
-func = input('f(x):')
-
-for x in range(-5, 5):
+def render_func_graph(formula, x_range):
     try:
-        new_func = func.replace('x', str(x))
-        ylist.append(eval(new_func))
-        xlist.append(x)
+        fig = plt.figure()    
+        x = np.array(x_range)
+        y = eval(formula)
+        print(y)
+        plt.plot(x, y, 'go-')
+        plt.scatter(0,0)
+        plt.grid(True)
+        plt.show()
     except Exception as err:
-        print(str(err))
+        print(str(err))  
 
-fig = plt.plot(xlist, ylist, 'go-')
+def main():
+    func = input('f(x):')
+    render_func_graph(func, range(-10, 10))
 
-plt.scatter(0,0)
-plt.grid(True)
-plt.show()
+if __name__ == '__main__':
+    main()
+
