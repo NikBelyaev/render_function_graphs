@@ -1,26 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import re
+from FormatInput.FormatInputClass import FormatInputClass
+from config import shape_of_x_range, x_step
 
-def format_input_func(formula):
-    # Search for | symbols and replace it with abs() method
-    re_result_list = re.findall('(\|.*?\|)', formula)
-    for re_result in re_result_list:
-        formula = formula.replace(re_result, 'abs('+re_result.strip('|')+')')
-    # Search for trigonomtrical functions and replace it with np.*
-    trigon_funcs = ['[^c]sin', '[^c]cos', '[^c]tan', 'arcsin', 'arccos', 'arctan']
-    for trigon_func in trigon_funcs:
-        if trigon_func in formula:
-            formula = formula.replace(trigon_func, 'np.'+trigon_func)
-    return formula
-
-def render_func_graph(formula, x_range):
+def render_func_graph(formula_range_list_dict):
     try:
-        x = np.array(x_range)
-        y = eval(formula)
         ## Set the settings to display graph
         fig = plt.figure('Function graph') 
-        plt.xticks(np.arange(min(x), max(x)+1, 1.0))
         ax = fig.add_subplot(111)
         ## Set the Axis OX and OY crossed on zero
         ax.spines['left'].set_position('zero')
@@ -31,10 +17,13 @@ def render_func_graph(formula, x_range):
         ax.spines['bottom'].set_smart_bounds(True)
         ax.xaxis.set_ticks_position('bottom')
         ax.yaxis.set_ticks_position('left')
-        plt.xticks(np.arange(min(x), max(x)+1, 1.0))
-        plt.plot(x, y, 'go-')
         plt.scatter(0,0)
         plt.grid(True)
+        
+        for formula_range_dict in formula_range_list_dict:  
+            x = np.array(formula_range_dict.get('x_range'))
+            y = eval(str(formula_range_dict.get('formula')))
+            plt.plot(x, y, 'go-')
         plt.show()
     except Exception as err:
         print(str(err))  
@@ -45,9 +34,11 @@ def main():
         func = input('f(x):')
         if func=='q':
             break
-        formula = format_input_func(func)
-        print(formula)
-        render_func_graph(formula, np.arange(-5, 5, 0.5))
+        format_input = FormatInputClass(func, np.arange(-shape_of_x_range,
+                                                        shape_of_x_range,
+                                                        x_step))
+        formula_range_list_dict = format_input.wrapper_format_input()
+        render_func_graph(formula_range_list_dict)
 
 if __name__ == '__main__':
     main()
