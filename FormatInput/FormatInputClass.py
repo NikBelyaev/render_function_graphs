@@ -17,9 +17,9 @@ class FormatInputClass:
         return self.formula
 
     def format_trigon_funcs(self):
-        """Adds prefix (np.) before all trigon. functions"""
+        """Adds prefix (np.) before all trigon. functions and some other"""
         trigon_funcs = ['[^c]sin', '[^c]cos', '[^c]tan',
-                        'arcsin', 'arccos', 'arctan']
+                        'arcsin', 'arccos', 'arctan', 'sqrt']
         for trigon_func in trigon_funcs:
             if trigon_func in self.formula:
                 self.formula = self.formula.replace(trigon_func,
