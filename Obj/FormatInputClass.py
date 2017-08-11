@@ -1,14 +1,13 @@
 import re
 import numpy as np
-from math import sin, cos, tan, sqrt
 
 
-class FormatInputClass:
+class FormatInput:
     def __init__(self, formula):
         self.formula = formula
 
 
-    def replace_changed_math_symbols(self):
+    def replace_change_math_symbols(self):
         self.formula = self.formula.replace('÷', '/')
         self.formula = self.formula.replace('^', '**')
          
@@ -60,9 +59,9 @@ class FormatInputClass:
             if self.formula[0] == '{':
                 return self.format_system_of_equations()
             else:
-                self.replace_changed_math_symbols()
+                self.replace_change_math_symbols()
                 self.format_vertical_slashes()
                 self.format_sqrt_symbol()
-                return [{'formula': self.formula, 'x_range': self.x_range}]
+                return self.formula
         except Exception as error:
-            print(str(error))
+            print('[!!] Error in FormatInput', str(error))
