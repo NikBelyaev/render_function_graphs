@@ -3,7 +3,7 @@ Program for render function graphics by equation of function graph. You can alwa
 
 =====================================================
 
-This program uses matplotlib and numpy lib for rendering function graphs, so without this libs script won't work.
+This program uses matplotlib, numpy and wxPython libs for rendering function graphs, so without this libs script won't work.
 
 You have to enter f(x) function to get the function graph. An input is in infinity loop, so you can get new function graph just by closing the window of the old graph and entering new function. You can end the execution of the program by entering 'q'.
 
