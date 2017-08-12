@@ -31,7 +31,7 @@ class InputWindow:
 
     def action(self, argi):
         """pressed button's value is inserted into the end of the text area"""
-        self.e.insert(END, argi)
+        self.e.insert(INSERT, argi)
 
         
     def __init__(self):

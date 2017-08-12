@@ -23,6 +23,15 @@ class FormatInput:
         for re_result in re_result_list:
             self.formula = self.formula.replace(re_result,
                                                 'sqrt(' + re_result[2:len(re_result)-1] + ')')
+
+    def format_multiply(self):
+        # Find with regex
+        possible_mult_constr = ['[\d(\dx)[^]]]+[\(]', '\d+[x]', '\)\(']
+        for mult_constr in possible_mult_constr:
+            for res in re.findall(mult_constr, self.formula):
+                # Adding *
+                tmp = res.split(res[len(res)-1:])[0]+'*'+res[len(res)-1:]
+                self.formula = self.formula.replace(res, tmp)
 ##
 ##    def format_system_of_equations(self):
 ##        """Splits system of equations to simple equations"""
@@ -56,12 +65,10 @@ class FormatInput:
     def wrapper_format_input(self):
         """Wraps all the formating input functions"""
         try:
-            if self.formula[0] == '{':
-                return self.format_system_of_equations()
-            else:
-                self.replace_change_math_symbols()
-                self.format_vertical_slashes()
-                self.format_sqrt_symbol()
-                return self.formula
+            self.replace_change_math_symbols()
+            self.format_vertical_slashes()
+            self.format_sqrt_symbol()
+            self.format_multiply()
+            return self.formula
         except Exception as error:
             print('[!!] Error in FormatInput', str(error))
