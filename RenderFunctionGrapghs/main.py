@@ -1,8 +1,11 @@
-import sys
+import wx
 from Obj.InputWindowClass import InputWindow
 
 def main():
-    input_window = InputWindow()
+    app = wx.App()
+    dlg = InputWindow()
+    dlg.ShowModal()
+    dlg.Destroy()
 
 if __name__ == '__main__':
     main()
