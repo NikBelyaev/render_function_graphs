@@ -1,6 +1,8 @@
 # render_function_graphs
 Program for render function graphics by equation of function graph. You can always help with code or ideas to improve usability of this script.
 
+If you want to check out GUI versions change master brunch to add_gui (Tkinter) or wxPython_gui (wxPython)
+
 =====================================================
 
 This program uses matplotlib and numpy lib for rendering function graphs, so without this libs script won't work.
